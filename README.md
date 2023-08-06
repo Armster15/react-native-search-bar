@@ -1,3 +1,7 @@
+## ⚠️ This is a fork that adds a `.selectAllText()` method
+
+---
+
 <h2 align="center">React Native Search Bar</h2>
 
 <p align="center">The high-quality
