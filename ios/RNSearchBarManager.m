@@ -200,4 +200,19 @@ RCT_EXPORT_METHOD(toggleCancelButton:(nonnull NSNumber *)reactTag  flag:(BOOL *)
    }];
 }
 
+RCT_EXPORT_METHOD(selectAllText:(nonnull NSNumber *)reactTag)
+{
+    [self.bridge.uiManager addUIBlock:
+     ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
+         RNSearchBar *searchBar = viewRegistry[reactTag];
+         
+         if ([searchBar isKindOfClass:[RNSearchBar class]]) {
+             [searchBar becomeFirstResponder];
+             [[UIApplication sharedApplication] sendAction:@selector(selectAll:) to:nil from:nil forEvent:nil];
+         } else {
+             RCTLogError(@"Cannot select all text: %@ (tag #%@) is not RNSearchBar", searchBar, reactTag);
+         }
+     }];
+}
+
 @end

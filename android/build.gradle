@@ -5,6 +5,7 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
+    namespace = "org.umhan35"
     compileSdkVersion safeExtGet('compileSdkVersion', 28)
 
     compileOptions {

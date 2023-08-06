@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
+import android.widget.EditText;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -44,6 +45,18 @@ public class RNSearchBarModule extends ReactContextBaseJavaModule {
                     imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
                 }
             }
+        });
+    }
+
+    @ReactMethod
+    public void selectAllText(int reactTag) {
+        focus(reactTag);
+        
+        uiCommand(reactTag, searchView -> {
+            // https://stackoverflow.com/a/19294013/5721784
+            int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+            EditText editText = (EditText) searchView.findViewById(id);
+            editText.selectAll();
         });
     }
 
